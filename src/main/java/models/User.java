@@ -4,12 +4,25 @@
 package models;
 import java.time.LocalDate;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
+
+
 
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @author Vinicius
  *
@@ -22,23 +35,53 @@ public class User {
 	@Column
 	private String password;
 	@Column
+	private String login;
+	@Column
 	private String name;
 	@Column
 	private String email;
 	@Column
 	private int age;
-	@Column
-	private LocalDate birth;
-
-	public User(String name, String password, String email, LocalDate birth, LocalDate now) {
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sender")
+	List<Message> msgsList = new ArrayList<Message>();
+	
+	//@Column
+	//private LocalDate birth;
+	public User(){}
+	
+	public User(String name, String password, String email, String login, int age) {
+		this.login = login;
 		this.name = name;
 		this.password = password;
-		this.email = email; 
-		this.birth = birth;
-		this.age = calculateAge(birth, now); 
+		this.email = email;
+		this.age = age;
 	}
 	
 	
+
+	public List<Message> getMsgsList() {
+		return msgsList;
+	}
+
+	public void setMsgsList(List<Message> msgsList) {
+		this.msgsList = msgsList;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
 	public int calculateAge(LocalDate birth, LocalDate now) {
 	    if ((birth != null) && (now != null)) {
 	        return Period.between(birth, now).getYears();
@@ -78,17 +121,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-	public LocalDate getBirth() {
-		return birth;
-	}
-
-
-	public void setBirth(LocalDate birth) {
-		this.birth = birth;
-	}
-
 
 	public int getAge() {
 		return age;

@@ -22,6 +22,13 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>9.4-1201-jdbc41</version>
 		</dependency>
+		
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.26</version>
+		</dependency>
 
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
