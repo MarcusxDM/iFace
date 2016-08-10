@@ -99,10 +99,17 @@ public class App
 		entry = integerScan.nextInt();
 		switch(entry){
 		case 1:
-			mainUser.getMsgsList().toString();
+			//System.out.print(mainUser.getMsgsList().toString());
+			
+			//for(Message m : mainUser.getMsgsList){
+			//	System.out.println("De: ")+m.getSender.getName()+" '";
+			//	System.out.println("' "+m.getContentText()+" '");
+			//}
+			break;
 		
 		case 2:
 			sendMessage();
+			break;
 		}
 		
 	}
